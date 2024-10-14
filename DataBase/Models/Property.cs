@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace DataBase
+namespace DataBase.Models
 {
     public class Property
     {
