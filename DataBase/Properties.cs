@@ -4,18 +4,10 @@ namespace DataBase
 {
     public class Properties
     {
-        private int id;
-        private string name;
-        private string description;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int ProductId { get; set; }
         public Products Product { get; set; }
-        public int PropertyId { get; set; }
-        public string PropertyName { get; set; }
-        public string PropertyDescription { get; set; }
-        public Properties(int PropertyId, string PropertyName, string PropertyDescription) 
-        {
-            this.PropertyId = PropertyId;
-            this.PropertyName = PropertyName;
-            this.PropertyDescription = PropertyDescription;
-        }
     }
 }
