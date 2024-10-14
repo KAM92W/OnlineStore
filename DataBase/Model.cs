@@ -1,9 +1,9 @@
 ﻿namespace DataBase
 {
-    public class Models
+    public class Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Products> Products { get; set; }
+        public List<Product> Products { get; set; }
     }
 }
