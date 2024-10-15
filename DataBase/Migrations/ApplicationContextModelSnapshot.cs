@@ -28,7 +28,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Category", b =>
@@ -43,7 +43,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Model", b =>
@@ -58,7 +58,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Models");
+                    b.ToTable("Models", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Product", b =>
@@ -91,7 +91,7 @@ namespace DataBase.Migrations
 
                     b.HasIndex("ModelId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Property", b =>
@@ -115,7 +115,7 @@ namespace DataBase.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Properties");
+                    b.ToTable("Properties", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Product", b =>
