@@ -9,7 +9,7 @@ namespace DataBase
         {
             optionsBuilder.UseSqlite("Data Source=helloapp.db");
         }
-        public ApplicationContext() => Database.EnsureCreated();
+        //public ApplicationContext() => Database.EnsureCreated();
 
         public DbSet<Brand> Brands => Set<Brand>();
         public DbSet<Category> Categories => Set<Category>();
