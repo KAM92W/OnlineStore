@@ -7,7 +7,7 @@ public class ApplicationContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source=sqlite.db");
+        optionsBuilder.UseSqlite("Data Source=D:\\Programming\\OnlineStore\\DataBase\\sqlite.db");
     }
     public DbSet<Brand> Brands => Set<Brand>();
     public DbSet<Category> Categories => Set<Category>();
