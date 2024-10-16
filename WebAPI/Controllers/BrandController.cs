@@ -1,6 +1,7 @@
 using DataBase;
 using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace WebAPI.Controllers
 {
@@ -14,6 +15,15 @@ namespace WebAPI.Controllers
             using (var db = new ApplicationContext())
             {
                 return db.Brands.ToList();
+            }
+        }
+        [HttpPost]
+        public void Post (Brand brand)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                db.Brands.Add(brand);
+                db.SaveChanges();
             }
         }
     }
