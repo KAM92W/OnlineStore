@@ -28,7 +28,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Category", b =>
@@ -43,7 +43,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Model", b =>
@@ -58,21 +58,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Models");
-                });
-
-            modelBuilder.Entity("DataBase.Models.Price", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Prices");
+                    b.ToTable("Models", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Product", b =>
@@ -94,11 +80,8 @@ namespace DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("PriceId")
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("PriceId1")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -108,9 +91,7 @@ namespace DataBase.Migrations
 
                     b.HasIndex("ModelId");
 
-                    b.HasIndex("PriceId1");
-
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Property", b =>
@@ -134,7 +115,7 @@ namespace DataBase.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Properties");
+                    b.ToTable("Properties", (string)null);
                 });
 
             modelBuilder.Entity("DataBase.Models.Product", b =>
@@ -157,19 +138,11 @@ namespace DataBase.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataBase.Models.Price", "Price")
-                        .WithMany("Products")
-                        .HasForeignKey("PriceId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
 
                     b.Navigation("Model");
-
-                    b.Navigation("Price");
                 });
 
             modelBuilder.Entity("DataBase.Models.Property", b =>
@@ -194,11 +167,6 @@ namespace DataBase.Migrations
                 });
 
             modelBuilder.Entity("DataBase.Models.Model", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("DataBase.Models.Price", b =>
                 {
                     b.Navigation("Products");
                 });
