@@ -1,5 +1,5 @@
-﻿using DataBase;
-using DataBase.Models;
+﻿using DataBase.Models;
+using DataBase;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Dto;
@@ -8,24 +8,24 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class PriceController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IEnumerable<Price> Get()
         {
             using (var db = new ApplicationContext())
             {
-                return db.Products.ToList();
+                return db.Prices.ToList();
             }
         }
 
         [HttpPost]
-        public void Post(PictureLink link)
+        public void Post(PriceName rub)
         {
             using (var db = new ApplicationContext())
             {
-                var entity = new Product { Picture = link.Link };
-                db.Products.Add(entity);
+                var entity = new Price { Name = rub.Name, Products = [] };
+                db.Prices.Add(entity);
                 db.SaveChanges();
             }
         }

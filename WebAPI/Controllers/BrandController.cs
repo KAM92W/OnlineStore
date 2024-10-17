@@ -18,10 +18,11 @@ namespace WebAPI.Controllers
                 return db.Brands.ToList();
             }
         }
+
         [HttpPost]
         public void Post (BrandName brand)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using (var db = new ApplicationContext())
             {
                 Brand entity = new Brand { Name = brand.Name, Products = [] };
                 db.Brands.Add(entity);

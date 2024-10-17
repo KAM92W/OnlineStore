@@ -12,7 +12,7 @@ public class ApplicationContext : DbContext
     public DbSet<Property> Properties => Set<Property>();
     public DbSet<Price> Prices => Set<Price>();
 
-    public ApplicationContext() => Database.EnsureCreated();
+    //public ApplicationContext() => Database.EnsureCreated();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Data Source=D:\\Programming\\OnlineStore\\DataBase\\sqlite.db");
