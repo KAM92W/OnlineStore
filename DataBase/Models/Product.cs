@@ -7,7 +7,7 @@
         public int CategoryId { get; set; }
         public int BrandId { get; set; }
         public int ModelId { get; set; }
-        public decimal PriceId { get; set; } 
+        public decimal PriceName { get; set; } 
         public Category Category { get; set; }
         public Brand Brand { get; set; }
         public Model Model { get; set; }
