@@ -2,6 +2,7 @@
 using DataBase;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Dto;
 
 namespace WebAPI.Controllers
 {
@@ -15,6 +16,17 @@ namespace WebAPI.Controllers
             using (var db = new ApplicationContext())
             {
                 return db.Categories.ToList();
+            }
+        }
+
+        [HttpPost]
+        public void Post(CategoryName categoryname) 
+        {
+            using (var db = new ApplicationContext()) 
+            {
+                var entity = new Category { Name = categoryname.Name, Products = [] };
+                db.Categories.Add(entity);
+                db.SaveChanges();
             }
         }
     }

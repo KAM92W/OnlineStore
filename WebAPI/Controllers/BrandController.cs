@@ -2,6 +2,7 @@ using DataBase;
 using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using WebAPI.Dto;
 
 namespace WebAPI.Controllers
 {
@@ -18,11 +19,12 @@ namespace WebAPI.Controllers
             }
         }
         [HttpPost]
-        public void Post (Brand brand)
+        public void Post (BrandName brand)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                db.Brands.Add(brand);
+                Brand entity = new Brand { Name = brand.Name, Products = [] };
+                db.Brands.Add(entity);
                 db.SaveChanges();
             }
         }
