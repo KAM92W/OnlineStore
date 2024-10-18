@@ -19,15 +19,23 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpPost("Brand")]
-        
-        //public void Post(Product product)
-        //{
-        //    using (var db = new ApplicationContext())
-        //    {
-        //        db.Products.Add(product);
-        //        db.SaveChanges();
-        //    }
-        //}
+        [HttpPost]
+        public void Post (ProductName product)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var entity = new Product 
+                {
+                    Picture = product.PictureLink,
+                    BrandId = product.BrandId,
+                    CategoryId = product.CategoryId,
+                    ModelId = product.ModelId,
+                    PriceId = product.PriceId,
+                    Properties = []
+                };
+                db.Products.Add(entity);
+                db.SaveChanges();
+            }
+        }
     }
 }
