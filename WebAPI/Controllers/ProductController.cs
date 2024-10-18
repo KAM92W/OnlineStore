@@ -19,15 +19,15 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpPost]
-        public void Post(PictureLink link)
-        {
-            using (var db = new ApplicationContext())
-            {
-                var entity = new Product { Picture = link.Link };
-                db.Products.Add(entity);
-                db.SaveChanges();
-            }
-        }
+        [HttpPost("Brand")]
+        
+        //public void Post(Product product)
+        //{
+        //    using (var db = new ApplicationContext())
+        //    {
+        //        db.Products.Add(product);
+        //        db.SaveChanges();
+        //    }
+        //}
     }
 }
