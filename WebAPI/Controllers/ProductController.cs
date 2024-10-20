@@ -1,7 +1,9 @@
 ﻿using DataBase;
 using DataBase.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebAPI.Dto;
 
 namespace WebAPI.Controllers
@@ -20,13 +22,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public void Post (ProductName product)
+        public void Post(ProductName product)
         {
             using (var db = new ApplicationContext())
             {
-                var entity = new Product 
+                var entity = new Product
                 {
-                    Picture = product.PictureLink,
+                    //Picture = product.PictureLink,
                     BrandId = product.BrandId,
                     CategoryId = product.CategoryId,
                     ModelId = product.ModelId,
@@ -37,5 +39,19 @@ namespace WebAPI.Controllers
                 db.SaveChanges();
             }
         }
+
+        //public IActionResult UploadFile([FromForm] FileUploadModel model)
+        //{
+        //    var folderName = Path.Combine("wwwroot", "images");
+        //    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+        //    var fileName = model.File.FileName;
+        //    var fullPath = Path.Combine(pathToSave, fileName);
+        //    var dbPath = Path.Combine(folderName, fileName);
+        //    using (var stream = new FileStream(fullPath, FileMode.Create))
+        //    {
+        //        model.File.CopyTo(stream);
+        //    }
+        //    return Ok(new { dbPath });
+        //}
     }
 }
