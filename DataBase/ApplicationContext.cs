@@ -15,6 +15,6 @@ public class ApplicationContext : DbContext
     //public ApplicationContext() => Database.EnsureCreated();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source=D:\\Programming\\OnlineStore\\DataBase\\sqlite.db");
+        optionsBuilder.UseSqlite("Data Source=..\\DataBase\\sqlite.db");
     }
 }
