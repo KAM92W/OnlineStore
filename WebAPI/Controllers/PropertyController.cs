@@ -4,33 +4,32 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Dto;
 
-namespace WebAPI.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PropertyController : ControllerBase
-    {
-        [HttpGet]
-        public IEnumerable<Property> Get()
-        {
-            using (var db = new ApplicationContext())
-            {
-                return db.Properties.ToList();
-            }
-        }
+namespace WebAPI.Controllers;
 
-        [HttpPost]
-        public void Post(PropertyName propertyname) 
+[Route("api/[controller]")]
+[ApiController]
+public class PropertyController : ControllerBase
+{
+    [HttpGet]
+    public IEnumerable<Property> Get()
+    {
+        using (var db = new ApplicationContext())
         {
-            using (var db = new ApplicationContext()) 
+            return db.Properties.ToList();
+        }
+    }
+
+    [HttpPost]
+    public void Post(PropertyName propertyname) 
+    {
+        using (var db = new ApplicationContext()) 
+        {
+            var entity = new Property 
             {
-                var entity = new Property 
-                {
-                    Name = propertyname.Name,
-                    Description = propertyname.Description,
-                    ProductId = propertyname.ProductId,
-                };
-            }
+                Name = propertyname.Name,
+                Description = propertyname.Description,
+                ProductId = propertyname.ProductId,
+            };
         }
     }
 }

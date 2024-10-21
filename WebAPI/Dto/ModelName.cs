@@ -1,7 +1,6 @@
-﻿namespace WebAPI.Dto
+﻿namespace WebAPI.Dto;
+
+public class ModelName
 {
-    public class ModelName
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }
