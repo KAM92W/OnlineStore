@@ -1,6 +1,5 @@
-﻿using DataBase.Models;
-using DataBase;
-using Microsoft.AspNetCore.Http;
+﻿using DataBase;
+using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Dto;
 

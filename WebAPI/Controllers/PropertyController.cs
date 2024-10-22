@@ -1,6 +1,5 @@
-﻿using DataBase.Models;
-using DataBase;
-using Microsoft.AspNetCore.Http;
+﻿using DataBase;
+using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Dto;
 
@@ -20,11 +19,11 @@ public class PropertyController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(PropertyName propertyname) 
+    public void Post(PropertyName propertyname)
     {
-        using (var db = new ApplicationContext()) 
+        using (var db = new ApplicationContext())
         {
-            var entity = new Property 
+            var entity = new Property
             {
                 Name = propertyname.Name,
                 Description = propertyname.Description,
