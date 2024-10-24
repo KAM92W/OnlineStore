@@ -19,18 +19,17 @@ public class BrandController : ControllerBase
         }
     }
 
-    //[HttpGet("{id}")]
-    //public async Task<ActionResult<Brand>> Get(int id)
-    //{
-    //    using (var db = new ApplicationContext())
-    //    {
-    //        Brand brand = await db.Brands.FirstOrDefaultAsync(x => x.Id == id);
-    //        if (user == null)
-    //            return NotFound();
-    //        return new ObjectResult(user);
-    //    }
-            
-    //}
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Brand>> Get(int id)
+    {
+        using (var db = new ApplicationContext())
+        {
+            Brand user = await db.Brands.FirstOrDefaultAsync(x => x.Id == id);
+            if (user == null)
+                return NotFound();
+            return new ObjectResult(user);
+        }
+    }
 
     [HttpPost]
     public void Post (BrandName brand)
