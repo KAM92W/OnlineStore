@@ -2,6 +2,7 @@ using DataBase;
 using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Security.Cryptography.X509Certificates;
 using WebAPI.Dto;
 
 namespace WebAPI.Controllers;
@@ -20,14 +21,14 @@ public class BrandController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Brand>> Get(int id)
+    public IActionResult GetBrandName(int id)
     {
         using (var db = new ApplicationContext())
         {
-            Brand user = await db.Brands.FirstOrDefaultAsync(x => x.Id == id);
-            if (user == null)
-                return NotFound();
-            return new ObjectResult(user);
+            var brand = db.Brands.Find(id);
+            BrandResponse response = new BrandResponse();
+            response.brandName = brand.Name;
+            return Ok (response);
         }
     }
 
