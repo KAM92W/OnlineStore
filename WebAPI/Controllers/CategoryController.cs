@@ -19,6 +19,21 @@ public class CategoryController : ControllerBase
         }
     }
 
+    [HttpGet("{id}")]
+    public IActionResult GetCategory(int id)
+    {
+        using (var db = new ApplicationContext())
+        {
+            var category = db.Categories.Find(id);
+            var response = new CategoryResponse 
+            { 
+                Id = category.Id,
+                Name = category.Name
+            };
+            return Ok(response);
+        }
+    }
+
     [HttpPost]
     public void Post(CategoryName categoryname) 
     {

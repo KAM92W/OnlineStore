@@ -19,6 +19,21 @@ public class ModelController : ControllerBase
         }
     }
 
+    [HttpGet("{id}")]
+    public IActionResult GetModel(int id)
+    {
+        using (var db = new ApplicationContext())
+        {
+            var model = db.Models.Find(id);
+            var response = new ModelResponse
+            {
+                Id = model.Id,
+                Name = model.Name
+            };
+            return Ok(response);
+        }
+    }
+
     [HttpPost]
     public void Post(ModelName modelname)
     {

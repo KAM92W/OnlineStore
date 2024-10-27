@@ -18,6 +18,21 @@ public class PriceController : ControllerBase
         }
     }
 
+    [HttpGet("{id}")]
+    public IActionResult GetPrice(int id)
+    {
+        using (var db = new ApplicationContext())
+        {
+            var price = db.Prices.Find(id);
+            var response = new PriceResponse
+            {
+                Id = price.Id,
+                Name = price.Name
+            };
+            return Ok(response);
+        }
+    }
+
     [HttpPost]
     public void Post(PriceName rub)
     {

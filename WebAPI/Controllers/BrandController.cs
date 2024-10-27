@@ -21,13 +21,16 @@ public class BrandController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetBrandName(int id)
+    public IActionResult GetBrand(int id)
     {
         using (var db = new ApplicationContext())
         {
             var brand = db.Brands.Find(id);
-            BrandResponse response = new BrandResponse();
-            response.brandName = brand.Name;
+            var response = new BrandResponse 
+            {
+                Id = brand.Id,
+                Name = brand.Name
+            };
             return Ok (response);
         }
     }

@@ -1,6 +1,8 @@
 ﻿using DataBase;
 using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Security.Cryptography.X509Certificates;
 using WebAPI.Dto;
 
 namespace WebAPI.Controllers;
@@ -15,6 +17,25 @@ public class ProductController : ControllerBase
         using (var db = new ApplicationContext())
         {
             return db.Products.ToList();
+        }
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetProduct(int id)
+    {
+        using (var db = new ApplicationContext())
+        {
+            var product = db.Products.Find(id);
+            var response = new ProductResponse
+            {
+                Id = product.Id,
+                Picture = product.Picture,
+                Category = product.CategoryId,
+                Brand = product.BrandId,
+                Model = product.ModelId,
+                Price = product.PriceId,
+            };
+            return Ok(response);
         }
     }
 

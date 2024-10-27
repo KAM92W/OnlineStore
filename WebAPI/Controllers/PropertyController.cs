@@ -18,6 +18,23 @@ public class PropertyController : ControllerBase
         }
     }
 
+    [HttpGet("{id}")]
+    public IActionResult GetProperty(int id)
+    {
+        using (var db = new ApplicationContext())
+        {
+            var property = db.Properties.Find(id);
+            var response = new PropertyResponse
+            {
+                Id = property.Id,
+                Name = property.Name,
+                Description = property.Description,
+                Product = property.ProductId,
+            };
+            return Ok(response);
+        }
+    }
+
     [HttpPost]
     public void Post(PropertyName propertyname)
     {
