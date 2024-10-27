@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Dto;
 
-public class PropertyName
+public class PropertyCreate
 {
     public string Name { get; set; }
     public string Description { get; set; }

@@ -36,7 +36,7 @@ public class BrandController : ControllerBase
     }
 
     [HttpPost]
-    public void Post (BrandName brand)
+    public void Post (BrandCreate brand)
     {
         using (var db = new ApplicationContext())
         {

@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Dto;
 
-public class PriceName
+public class PriceCreate
 {
     public decimal Name { get; set; }
 }

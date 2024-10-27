@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Dto;
 
-public class ModelName
+public class BrandCreate
 {
     public string Name { get; set; }
 }

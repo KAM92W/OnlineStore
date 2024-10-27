@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Dto;
 
-public class ProductName
+public class ProductCreate
 {
     public IFormFile File { get; set; }
     public int BrandId { get; set; }

@@ -36,7 +36,7 @@ public class PropertyController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(PropertyName propertyname)
+    public void Post(PropertyCreate propertyname)
     {
         using (var db = new ApplicationContext())
         {

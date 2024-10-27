@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Dto;
 
-public class CategoryName
+public class ModelCreate
 {
     public string Name { get; set; }
 }

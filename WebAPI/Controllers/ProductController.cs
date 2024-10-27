@@ -40,7 +40,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(ProductName product)
+    public void Post(ProductCreate product)
     {
         var folderName = Path.Combine("wwwroot", "images");
         var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);

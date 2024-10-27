@@ -35,7 +35,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(CategoryName categoryname) 
+    public void Post(CategoryCreate categoryname) 
     {
         using (var db = new ApplicationContext()) 
         {

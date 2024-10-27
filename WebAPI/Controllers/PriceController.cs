@@ -34,7 +34,7 @@ public class PriceController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(PriceName rub)
+    public void Post(PriceCreate rub)
     {
         using (var db = new ApplicationContext())
         {

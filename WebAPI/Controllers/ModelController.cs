@@ -35,7 +35,7 @@ public class ModelController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(ModelName modelname)
+    public void Post(ModelCreate modelname)
     {
         using (var db = new ApplicationContext())
         {
