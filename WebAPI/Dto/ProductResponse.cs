@@ -10,5 +10,6 @@ namespace WebAPI.Dto
         public int Brand { get; set; }
         public int Model { get; set; }
         public int Price { get; set; }
+        public List<Product> PropertyNames { get; set; }
     }
 }

@@ -2,8 +2,11 @@
 using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 using WebAPI.Dto;
+using static NuGet.Client.ManagedCodeConventions;
 
 namespace WebAPI.Controllers;
 
@@ -26,6 +29,9 @@ public class ProductController : ControllerBase
         using (var db = new ApplicationContext())
         {
             var product = db.Products.Find(id);
+            var properties = db.Products.Include(p => p.Properties).ToList();
+            foreach (var entity in Properties) 
+                Pr;
             var response = new ProductResponse
             {
                 Id = product.Id,
