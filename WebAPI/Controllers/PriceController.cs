@@ -19,11 +19,16 @@ public class PriceController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetPrice(int id)
+    public ActionResult <PriceResponse> GetPrice(int id)
     {
         using (var db = new ApplicationContext())
         {
-            var price = db.Prices.Find(id);
+            var price = db.Prices
+                .FirstOrDefault(x => x.Id == id);
+            if (price == null)
+            {
+                return NotFound();
+            }
             var response = new PriceResponse
             {
                 Id = price.Id,
@@ -34,13 +39,18 @@ public class PriceController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(PriceCreate rub)
+    public ActionResult<PriceCreate> Post(PriceCreate rub)
     {
         using (var db = new ApplicationContext())
         {
-            var entity = new Price { Name = rub.Name, Products = [] };
+            var entity = new Price 
+            { 
+                Name = rub.Name, 
+                Products = [] 
+            };
             db.Prices.Add(entity);
             db.SaveChanges();
+            return Ok();
         }
     }
 }

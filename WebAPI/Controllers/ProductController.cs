@@ -1,12 +1,8 @@
 ﻿using DataBase;
 using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 using WebAPI.Dto;
-using static NuGet.Client.ManagedCodeConventions;
 
 namespace WebAPI.Controllers;
 
@@ -24,14 +20,17 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetProduct(int id)
+    public ActionResult<ProductResponse> GetProduct(int id)
     {
         using (var db = new ApplicationContext())
         {
-            var product = db.Products.Find(id);
-            var properties = db.Products.Include(p => p.Properties).ToList();
-            foreach (var entity in Properties) 
-                Pr;
+            var product = db.Products
+                //.Include(x => x.Properties)
+                .FirstOrDefault(x => x.Id == id);
+            if (product == null) 
+            {
+                return NotFound();
+            }
             var response = new ProductResponse
             {
                 Id = product.Id,
@@ -40,13 +39,21 @@ public class ProductController : ControllerBase
                 Brand = product.BrandId,
                 Model = product.ModelId,
                 Price = product.PriceId,
+                //Properties = product.Properties
+                //    .Select(x => new Property
+                //    {
+                //        Id = x.Id,
+                //        Name = x.Name,
+                //        Description = x.Description,
+                //        ProductId = x.ProductId,
+                //    })
             };
             return Ok(response);
         }
     }
 
     [HttpPost]
-    public void Post(ProductCreate product)
+    public ActionResult<ProductCreate> Post(ProductCreate product)
     {
         var folderName = Path.Combine("wwwroot", "images");
         var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
@@ -73,6 +80,7 @@ public class ProductController : ControllerBase
             };
             db.Products.Add(entity);
             db.SaveChanges();
+            return Ok();
         }
     }
 }

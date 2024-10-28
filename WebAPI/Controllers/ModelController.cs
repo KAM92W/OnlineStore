@@ -20,11 +20,16 @@ public class ModelController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetModel(int id)
+    public ActionResult <ModelResponse> GetModel(int id)
     {
         using (var db = new ApplicationContext())
         {
-            var model = db.Models.Find(id);
+            var model = db.Models
+                .FirstOrDefault(x => x.Id == id);
+            if (model == null)
+            {
+                return NotFound();
+            }
             var response = new ModelResponse
             {
                 Id = model.Id,
@@ -35,13 +40,18 @@ public class ModelController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(ModelCreate modelname)
+    public ActionResult<ModelCreate> Post(ModelCreate modelname)
     {
         using (var db = new ApplicationContext())
         {
-            var entity = new Model { Name = modelname.Name, Products = [] };
+            var entity = new Model 
+            { 
+                Name = modelname.Name, 
+                Products = [] 
+            };
             db.Models.Add(entity);
             db.SaveChanges();
+            return Ok();
         }
     }
 }

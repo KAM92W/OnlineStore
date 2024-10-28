@@ -21,11 +21,16 @@ public class BrandController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetBrand(int id)
+    public ActionResult <BrandResponse> GetBrand(int id)
     {
         using (var db = new ApplicationContext())
         {
-            var brand = db.Brands.Find(id);
+            var brand = db.Brands
+                .FirstOrDefault(x => x.Id == id);
+            if (brand == null)
+            {
+                return NotFound();
+            }
             var response = new BrandResponse 
             {
                 Id = brand.Id,
@@ -36,13 +41,18 @@ public class BrandController : ControllerBase
     }
 
     [HttpPost]
-    public void Post (BrandCreate brand)
+    public ActionResult <BrandCreate> Post (BrandCreate brand)
     {
         using (var db = new ApplicationContext())
-        {
-            Brand entity = new Brand { Name = brand.Name, Products = [] };
+        {   
+            var entity = new Brand 
+            { 
+                Name = brand.Name, 
+                Products = [] 
+            };
             db.Brands.Add(entity);
             db.SaveChanges();
+            return Ok ();
         }
     }
 }

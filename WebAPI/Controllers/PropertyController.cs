@@ -1,5 +1,6 @@
 ﻿using DataBase;
 using DataBase.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Dto;
 
@@ -19,11 +20,16 @@ public class PropertyController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetProperty(int id)
+    public ActionResult <PropertyResponse> GetProperty(int id)
     {
         using (var db = new ApplicationContext())
         {
-            var property = db.Properties.Find(id);
+            var property = db.Properties
+                .FirstOrDefault(x => x.Id == id);
+            if (property == null)
+            {
+                return NotFound();
+            }
             var response = new PropertyResponse
             {
                 Id = property.Id,
@@ -36,7 +42,7 @@ public class PropertyController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(PropertyCreate propertyname)
+    public ActionResult<PropertyCreate> Post(PropertyCreate propertyname)
     {
         using (var db = new ApplicationContext())
         {
@@ -46,6 +52,9 @@ public class PropertyController : ControllerBase
                 Description = propertyname.Description,
                 ProductId = propertyname.ProductId,
             };
+            db.Properties.Add(entity);
+            db.SaveChanges();
+            return Ok();
         }
     }
 }

@@ -20,11 +20,16 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetCategory(int id)
+    public ActionResult <CategoryResponse> GetCategory(int id)
     {
         using (var db = new ApplicationContext())
         {
-            var category = db.Categories.Find(id);
+            var category = db.Categories
+                .FirstOrDefault(x => x.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
             var response = new CategoryResponse 
             { 
                 Id = category.Id,
@@ -35,13 +40,18 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    public void Post(CategoryCreate categoryname) 
+    public ActionResult <CategoryCreate> Post (CategoryCreate categoryname) 
     {
         using (var db = new ApplicationContext()) 
         {
-            var entity = new Category { Name = categoryname.Name, Products = [] };
+            var entity = new Category 
+            { 
+                Name = categoryname.Name, 
+                Products = [] 
+            };
             db.Categories.Add(entity);
             db.SaveChanges();
+            return Ok();
         }
     }
 }
