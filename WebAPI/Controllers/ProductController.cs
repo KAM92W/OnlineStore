@@ -60,9 +60,13 @@ public class ProductController : ControllerBase
 
         var fileName = product.File.FileName;
         var fullPath = Path.Combine(pathToSave, fileName);
-        var dbPath = Path.Combine("images", fileName);
 
-        using (var stream = new FileStream(fullPath, FileMode.Create))
+        var newFileName = Guid.NewGuid().ToString() + Path.GetExtension(fullPath);
+        var newFullPath = Path.Combine(pathToSave, newFileName);
+
+        var dbPath = Path.Combine("images", newFileName);
+
+        using (var stream = new FileStream(newFullPath, FileMode.Create))
         {
             product.File.CopyTo(stream);
         }
