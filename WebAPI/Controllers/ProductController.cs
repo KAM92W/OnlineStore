@@ -11,11 +11,14 @@ namespace WebAPI.Controllers;
 public class ProductController : ControllerBase
 {
     [HttpGet]
-    public IEnumerable<Product> Get()
+    public ActionResult<AllProductsResponse> GetAllProduct()
     {
         using (var db = new ApplicationContext())
         {
-            return db.Products.ToList();
+            var entity = db.Products;
+            var allProducts = new AllProductsResponse();
+            allProducts.Id = entity.
+            return ;
         }
     }
 
@@ -25,7 +28,7 @@ public class ProductController : ControllerBase
         using (var db = new ApplicationContext())
         {
             var product = db.Products
-                //.Include(x => x.Properties)
+                .Include(x => x.Properties)
                 .FirstOrDefault(x => x.Id == id);
             if (product == null) 
             {
@@ -39,14 +42,14 @@ public class ProductController : ControllerBase
                 Brand = product.BrandId,
                 Model = product.ModelId,
                 Price = product.PriceId,
-                //Properties = product.Properties
-                //    .Select(x => new Property
-                //    {
-                //        Id = x.Id,
-                //        Name = x.Name,
-                //        Description = x.Description,
-                //        ProductId = x.ProductId,
-                //    })
+                Properties = product.Properties
+                    .Select(x => new Property
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Description = x.Description,
+                        ProductId = x.ProductId,
+                    })
             };
             return Ok(response);
         }
