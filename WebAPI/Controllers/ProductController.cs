@@ -11,14 +11,49 @@ namespace WebAPI.Controllers;
 public class ProductController : ControllerBase
 {
     [HttpGet]
-    public ActionResult<AllProductsResponse> GetAllProduct()
+    public IEnumerable<AllProductsResponse> Get()
     {
         using (var db = new ApplicationContext())
         {
-            var entity = db.Products;
-            var allProducts = new AllProductsResponse();
-            allProducts.Id = entity.
-            return ;
+            var products = db.Products
+                .Include(b => b.Brand)
+                .Include(c => c.Category)
+                .Include(m => m.Model)
+                .Include(p => p.Price)
+                .Select(product => new AllProductsResponse
+                {
+                    Id = product.Id,
+                    Picture = product.Picture,
+                    Brand = new Brand
+                    {
+                        Id = product.Brand.Id,
+                        Name = product.Brand.Name,
+                    },
+                    Category = new Category
+                    {
+                        Id = product.Category.Id,
+                        Name = product.Category.Name,
+                    },
+                    Model = new Model
+                    {
+                        Id = product.Model.Id,
+                        Name = product.Model.Name,
+                    },
+                    Price = new Price
+                    {
+                        Id = product.Price.Id,
+                        Name = product.Price.Name,
+                    },
+                    Properties = product.Properties
+                        .Select(x => new Property
+                        {
+                            Id = x.Id,
+                            Name = x.Name,
+                            Description = x.Description,
+                            ProductId = x.ProductId,
+                        })
+                })
+            .ToList();
         }
     }
 

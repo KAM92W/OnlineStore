@@ -6,10 +6,10 @@ namespace WebAPI.Dto
     {
         public int Id { get; set; }
         public string Picture { get; set; }
-        public IEnumerable<Category> Category{ get; set; } = Array.Empty<Category>();
-        //public int Brand { get; set; }
-        //public int Model { get; set; }
-        //public int Price { get; set; }
-        //public IEnumerable<Property> Properties { get; set; } = Array.Empty<Property>();
+        public Category Category { get; set; }
+        public Brand Brand { get; set; }
+        public Model Model { get; set; }
+        public Price Price { get; set; }
+        public IEnumerable<Property> Properties { get; set; }
     }
 }
