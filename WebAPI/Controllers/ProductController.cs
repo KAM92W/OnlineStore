@@ -24,15 +24,15 @@ public class ProductController : ControllerBase
                 {
                     Id = product.Id,
                     Picture = product.Picture,
-                    Brand = new Brand
-                    {
-                        Id = product.Brand.Id,
-                        Name = product.Brand.Name,
-                    },
                     Category = new Category
                     {
                         Id = product.Category.Id,
                         Name = product.Category.Name,
+                    },
+                    Brand = new Brand
+                    {
+                        Id = product.Brand.Id,
+                        Name = product.Brand.Name,
                     },
                     Model = new Model
                     {
@@ -52,8 +52,8 @@ public class ProductController : ControllerBase
                             Description = x.Description,
                             ProductId = x.ProductId,
                         })
-                })
-            .ToList();
+                });
+            return products.ToList();
         }
     }
 
