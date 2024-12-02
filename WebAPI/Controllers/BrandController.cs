@@ -12,13 +12,13 @@ namespace WebAPI.Controllers;
 public class BrandController : ControllerBase
 {
     [HttpGet]
-    public IEnumerable<Brand> Get()
-    {
-        using (var db = new ApplicationContext())
-        {
-            return db.Brands.ToList();
-        }
-    }
+    //public IEnumerable<Brand> Get()
+    //{
+    //    using (var db = new ApplicationContext())
+    //    {
+    //        return db.Brands.ToList();
+    //    }
+    //}
 
     [HttpGet("{id}")]
     public ActionResult <BrandResponse> GetBrand(int id)
