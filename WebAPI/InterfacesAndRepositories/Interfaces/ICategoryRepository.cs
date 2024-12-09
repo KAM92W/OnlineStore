@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Interfaces
+﻿namespace WebAPI.InterfacesAndRepositories.Interfaces
 {
     public interface ICategoryRepository
     {

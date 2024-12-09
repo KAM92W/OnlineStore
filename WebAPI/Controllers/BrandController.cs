@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Security.Cryptography.X509Certificates;
 using WebAPI.Dto;
+using WebAPI.InterfacesAndRepositories.Interfaces;
 
 namespace WebAPI.Controllers;
 
@@ -12,6 +13,7 @@ namespace WebAPI.Controllers;
 public class BrandController : ControllerBase
 {
     [HttpGet]
+
     //public IEnumerable<Brand> Get()
     //{
     //    using (var db = new ApplicationContext())
@@ -21,24 +23,24 @@ public class BrandController : ControllerBase
     //}
 
     [HttpGet("{id}")]
-    public ActionResult <BrandResponse> GetBrand(int id)
-    {
-        using (var db = new ApplicationContext())
-        {
-            var brand = db.Brands
-                .FirstOrDefault(x => x.Id == id);
-            if (brand == null)
-            {
-                return NotFound();
-            }
-            var response = new BrandResponse 
-            {
-                Id = brand.Id,
-                Name = brand.Name
-            };
-            return Ok (response);
-        }
-    }
+    //public ActionResult <BrandResponse> GetBrand(int id)
+    //{
+    //    using (var db = new ApplicationContext())
+    //    {
+    //        var brand = db.Brands
+    //            .FirstOrDefault(x => x.Id == id);
+    //        if (brand == null)
+    //        {
+    //            return NotFound();
+    //        }
+    //        var response = new BrandResponse 
+    //        {
+    //            Id = brand.Id,
+    //            Name = brand.Name
+    //        };
+    //        return Ok (response);
+    //    }
+    //}
 
     [HttpPost]
     public ActionResult <BrandCreate> Post (BrandCreate brand)
