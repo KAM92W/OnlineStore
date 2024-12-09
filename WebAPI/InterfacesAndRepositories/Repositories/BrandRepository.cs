@@ -8,7 +8,7 @@ namespace WebAPI.InterfacesAndRepositories.Repositories
 {
     public class BrandRepository : IBrandRepository
     {
-        public IEnumerable<Brand> Get()
+        public IEnumerable<Brand> ReadAll()
         {
             using (var db = new ApplicationContext())
             {
@@ -16,19 +16,22 @@ namespace WebAPI.InterfacesAndRepositories.Repositories
             }
         }
 
-        public Brand GetBrand(int id)
+        public Brand Read(int id)
         {
             using (var db = new ApplicationContext())
             {
                 var brand = db.Brands
                     .FirstOrDefault(x => x.Id == id);
+                return brand;
+            }
+        }
 
-                var response = new BrandResponse
-                {
-                    Id = brand.Id,
-                    Name = brand.Name
-                };
-                к
+        public void Create(Brand brand)
+        {
+            using (var db = new ApplicationContext())
+            {
+                db.Brands.Add(brand);
+                db.SaveChanges();
             }
         }
     }

@@ -7,7 +7,8 @@ namespace WebAPI.InterfacesAndRepositories.Interfaces
 {
     public interface IBrandRepository
     {
-        IEnumerable<Brand> Get();
-        Brand GetBrand(int id);
+        IEnumerable<Brand> ReadAll();
+        Brand Read(int id);
+        void Create (BrandCreate brand);
     }
 }

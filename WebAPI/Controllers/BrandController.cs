@@ -43,18 +43,18 @@ public class BrandController : ControllerBase
     //}
 
     [HttpPost]
-    public ActionResult <BrandCreate> Post (BrandCreate brand)
-    {
-        using (var db = new ApplicationContext())
-        {   
-            var entity = new Brand 
-            { 
-                Name = brand.Name, 
-                Products = [] 
-            };
-            db.Brands.Add(entity);
-            db.SaveChanges();
-            return Ok ();
-        }
-    }
+    //public ActionResult <BrandCreate> Post (BrandCreate brand)
+    //{
+    //    using (var db = new ApplicationContext())
+    //    {   
+    //        var entity = new Brand 
+    //        { 
+    //            Name = brand.Name, 
+    //            Products = [] 
+    //        };
+    //        db.Brands.Add(entity);
+    //        db.SaveChanges();
+    //        return Ok ();
+    //    }
+    //}
 }
